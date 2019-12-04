@@ -93,10 +93,11 @@ curdoc().template_variables.update(first_name="Mary", last_name="Jones")
 ### Google Colab Notebook 활용
 
 - 구글 Colab site에서 `Copy to Drive` 하면 내 구글 드라이브 공간에 `Colab Notebook` 생성
-- .ipynb 파일을 Google Colaboratory로 열기
+- `.ipynb` 파일을 Google Colaboratory로 열기
 - GoogleCredentials 인증 키 입력 필요
 	- Google Cloud SDK access 허용
 	- 이어 뜨는 verification code 복사하여 입력
+
 - Google Cloud Platform에서 Google Sheets API 및 Google Drive API `사용 설정` 필요
 - Google Drive File Stream 인증 키 입력 필요
 
@@ -106,6 +107,12 @@ auth.authenticate_user()
 
 from google.colab import drive
 drive.mount('/content/drive') // drive란 폴더를 만든 후, 우리 구글 드라이브의 root와 drive 폴더를 연결(mount)
+```
+
+- 입출력용 파일은 반드시 `.gsheet` 형태여야 한다.
+
+```js
+worksheet = gc.open('My Test').sheet1
 ```
 
 ### GitHub 연동
