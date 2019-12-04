@@ -51,7 +51,7 @@ $ bokeh sampledata
 
 #### 응용 프로그램 제공 방법
 
-##### [단일 모듈 형식]
+##### [Single Module Type]
 
 ```bash
 $ bokeh serve --show xxx.py
@@ -62,7 +62,7 @@ $ bokeh serve --show xxx.py
 - `--disable-index` 옵션을 선택하면 redirection을 할 수 없게 한다.
 - `--disable-index-redirect` 옵션을 사용하면, 단일 python 파일에서 Bokeh 응용 프로그램을 만드는 것 외에도 directory에서 응용 프로그램을 만들 수도 있다.
 
-##### [디렉터리 형식]
+##### [Directory Type]
 
 - directory에는 최소한 pyBokehServer가 수행할 code가 구성되어 있어야 한다. `main.py`
 
@@ -70,7 +70,7 @@ $ bokeh serve --show xxx.py
 $ bokeh serve --show [Diretory]
 ```
 
-- 사용자 지정 변수는 다음을 통해 템플릿으로 전달할 수 있다.
+- 사용자 지정 변수는 다음을 통해 templates으로 전달할 수 있다.
 
 ```js
 // set a new single key/value
@@ -89,3 +89,26 @@ curdoc().template_variables.update(first_name="Mary", last_name="Jones")
 	- theme.yaml          // Bokeh 모델 유형에 적용할 기본 특성을 기준으로 정의하는 파일
 	- templates
  		- index.html      // 하위 디렉터리 Jinja template file
+
+### Google Colab Notebook 활용
+
+- 구글 Colab site에서 `Copy to Drive` 하면 내 구글 드라이브 공간에 `Colab Notebook` 생성
+- .ipynb 파일을 Google Colaboratory로 열기
+- GoogleCredentials 인증 키 입력 필요
+	- Google Cloud SDK access 허용
+	- 이어 뜨는 verification code 복사하여 입력
+- Google Cloud Platform에서 Google Sheets API 및 Google Drive API `사용 설정` 필요
+- Google Drive File Stream 인증 키 입력 필요
+
+```js
+from google.colab import auth
+auth.authenticate_user()
+
+from google.colab import drive
+drive.mount('/content/drive') // drive란 폴더를 만든 후, 우리 구글 드라이브의 root와 drive 폴더를 연결(mount)
+```
+
+### GitHub 연동
+
+- GitHub id/pwd만 입력하면 GitHub Repository에 저장이 가능
+- `수정 → 노트 설정`에서 커널 Python3, Python2 중에 하나를 선택할 수 있고 하드웨어 가속도 사용이 가능하다. (GPU, TPU)
